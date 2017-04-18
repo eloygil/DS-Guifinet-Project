@@ -1,5 +1,5 @@
 # Python Json Parser by Eloy Gil & Hao Wu
-# {eloy.gil,hao.wu}@ac.upc.edu
+# {eloy,hao.wu}@ac.upc.edu
 # MIRI - DS - FIB (UPC)
 import json
 with open('captura.json', 'r') as f:
