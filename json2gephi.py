@@ -28,5 +28,39 @@ with open('captura.json', 'r') as f:
 								if key_link == "bandwidth":
 									bw = value_link
 									edgelist.append([keys,key_links,signal,bw])
+
+	#to print cvs edges
+	#print ("Source;Target;Type;Weight")
+	#for p in edgelist: 
+	#	 print ("{d[0]};{d[1]};Directed;{d[2]}".format(d=p))
+
+	#toprint cvs nodes
+	print("Id;Label")	
+
+	for p in nodelist: 
+		 print ("{d[0]};{d[1]}".format(d=p))
+
+
+	#print ("<?xml version=\"1.0\" encoding=\"UTF-8\"?>")
+	#print ("<gexf xmlns:viz=\"http:///www.gexf.net/1.1draft/viz\" version=\"1.1\" xmlns=\"http://www.gexf.net/1.1draft\">")
+	#print ("<meta lastmodifieddate=\"2010-03-03+23:44\">")
+	#print ("<creator>Gephi 0.7</creator>")
+	#print ("</meta>")
+	#print ("<graph defaultedgetype=\"undirected\" idtype=\"string\" type=\"static\">")
+	#print ('<nodes count=\"{:d}\">'.format(len(nodelist))) 
+	#for p in nodelist: print ("<node id=\"{d[0]}\" label=\"{d[1]}\"/>".format(d=p))					
+
+	#i=1
+	#for p in edgelist: 
+
+	#	if str(p[2])==str('None'):
+	#		print ("<edge id=\"{i}\" source=\"{d[1]}\" target=\"{d[1]}\"/>".format(i=i , d=p))					
+
+	#	else: print ("<edge id=\"{i}\" source=\"{d[1]}\" target=\"{d[1]}\" weight=\"{d[2]}\"/>".format(i=i , d=p))					
+
+	#	i +=1
+	#print ("</edges>")
+	#print ("</graph>")
+	#print ("</gexf>")
 	#print nodelist[0:5]
 	#print edgelist[0:5]
