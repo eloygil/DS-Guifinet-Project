@@ -17,6 +17,9 @@ for x in range(0, 141):
         for node in data["nodes"]:
             nodelist.append(str(node))
     else:
+        for down_node in down_nodes:
+            if down_node not in data["nodes"]:
+                failed.append(str(down_node))
         for node in data["nodes"]:
             if node not in nodelist:
                 nodelist.append(str(node))
@@ -26,9 +29,6 @@ for x in range(0, 141):
                 else:
                     failed.append(str(node))
                     down_nodes.remove(str(node))
-        for down_node in down_nodes:
-            if down_node not in data["nodes"]:
-                failed.append(str(down_node))
         for old_node in nodelist:
             if old_node not in data["nodes"]:
                 nodelist.remove(str(old_node))
