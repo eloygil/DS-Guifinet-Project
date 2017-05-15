@@ -5,11 +5,6 @@
 
 from collections import Counter
 import simplejson as json
-import operator
-nodelist = []
-linklist = []
-failed = []
-down_nodes = []
 l = Counter()
 for x in range(0, 141):
     name = str(x) + '.txt'
