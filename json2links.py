@@ -3,31 +3,35 @@
 # MIRI - DS - FIB (UPC)
 # Note: Requires simplejason -> pip install simplejson
 
+from collections import Counter
 import simplejson as json
 import operator
-import copy
 nodelist = []
 linklist = []
 failed = []
 down_nodes = []
-for x in range(0, 1):
+l = Counter()
+for x in range(0, 141):
     name = str(x) + '.txt'
-    print name
+    #print name
     with open(name) as data_file:
         data = json.load(data_file)
-        print data
-    for key, value in data.items():
+        #print data
+    for key, value in data.iteritems():
         if key == "nodes":
-            for key_node, value_node in value.items():
-                if key_node == "name":
-                    name = key_node
-                if key_node == "links":
-                    for key_link, value_link in value_node.items():
-                        linklist.append(str(name)+'-'+str(value_link))
+            for key_node, value_node in value.iteritems():
+                name = key_node
+                for key_value, value_value in value_node.iteritems():
+                    if key_value == "links":
+                        for key_link, value_link in value_value.iteritems():
+                            l[str(name)+'-'+str(key_link)] += 1
 
-#frequency = {i: linklist.count(i) for i in linklist}
-#sorted_freq = sorted(frequency.items(), key=operator.itemgetter(1), reverse=True)
-#print 'Link list, ordered by number of 1-hour downtime failures:'
-#for failed_node in sorted_freq:
-#    print 'Link' + str(failed_node[0]) + ' = ' + str(failed_node[1])
-print linklist
+print 'Link list, ordered by increasing uptime rate:'
+ordered_links = []
+for link in l:
+    ordered_links.append([l[link], link])
+ordered_links = sorted(ordered_links)
+for link in ordered_links:
+    print 'Link ' + str(link[1]) + ' = ' + str(float(link[0]*100/(x+1))) + '%'
+
+# Maybe it could be interesting to parse node ID to node name.
