@@ -10,7 +10,7 @@ failed = []
 down_nodes = []
 for x in range(0, 141):
     name = str(x) + '.txt'
-    #print name
+    print name
     with open(name) as data_file:
         data = json.load(data_file)
     if x == 0:
