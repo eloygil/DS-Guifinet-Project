@@ -3,16 +3,28 @@
 # MIRI - DS - FIB (UPC)
 # Note: Requires simplejason -> pip install simplejson
 
+from collections import Counter
 import simplejson as json
 import operator
+nodes = Counter()
 nodelist = []
 failed = []
 down_nodes = []
 for x in range(0, 141):
-    name = str(x) + '.txt'
-    print name
-    with open(name) as data_file:
+    filename = str(x) + '.txt'
+    print filename
+    with open(filename) as data_file:
         data = json.load(data_file)
+
+    for key, value in data.iteritems():
+        if key == "nodes":
+            for key_node, value_node in value.iteritems():
+                name = key_node
+                for key_value, value_value in value_node.iteritems():
+                    if key_value == "name":
+                        nodes[name] = value_value
+                        #break!
+
     if x == 0:
         for node in data["nodes"]:
             nodelist.append(str(node))
@@ -36,6 +48,6 @@ for x in range(0, 141):
                 down_nodes.append(str(old_node))
 frequency = {i:failed.count(i) for i in failed}
 sorted_freq = sorted(frequency.items(), key=operator.itemgetter(1), reverse=True)
-print 'Failed nodes list, ordered by number of 1-hour downtime failures:'
+print 'Failed nodes list, ordered by uptime:'
 for failed_node in sorted_freq:
-    print 'Node ' + str(failed_node[0]) + ' = ' + str(failed_node[1])
+    print 'Node ' + nodes[str(failed_node[0])] + ' = ' + str(round(100-float(failed_node[1])*100/float(x),3)) + '%'
