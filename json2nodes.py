@@ -51,3 +51,6 @@ sorted_freq = sorted(frequency.items(), key=operator.itemgetter(1), reverse=True
 print 'Failed nodes list, ordered by uptime:'
 for failed_node in sorted_freq:
     print 'Node ' + nodes[str(failed_node[0])] + ' = ' + str(round(100-float(failed_node[1])*100/float(x),3)) + '%'
+    #print nodes[str(failed_node[0])]
+    #uptime = str(round(100-float(failed_node[1])*100/float(x),3))
+    #print uptime.split('.')[0] + ',' + uptime.split('.')[1] + '%'

@@ -8,7 +8,7 @@ from collections import Counter
 import simplejson as json
 l = Counter()
 nodes = Counter()
-for x in range(62, 63):
+for x in range(0, 141):
     name = str(x) + '.txt'
     #print name
     with open(name) as data_file:
@@ -31,5 +31,13 @@ for link in l:
     ordered_links.append([l[link], link])
 ordered_links = sorted(ordered_links)
 for link in ordered_links:
-    #print 'Link ' + str(nodes[str(link[1]).split('-')[0]]) + ' to ' + str(nodes[str(link[1]).split('-')[1]])
-    print 'Link ' + str(nodes[str(link[1]).split('-')[0]]) + ' to ' + str(nodes[str(link[1]).split('-')[1]]) + ' has a ' + str(float(link[0]*100/(x+1))) + '% uptime. (' + str(link[0]) + '/' + str(x+1) + ')'
+    print 'Link ' + str(nodes[str(link[1]).split('-')[0]]) + ' to ' + str(nodes[str(link[1]).split('-')[1]]) + ' has a ' + str(round(float(link[0]*100/float(x+1)), 3)) + '% uptime. (' + str(link[0]) + '/' + str(x+1) + ')'
+    #print str(nodes[str(link[1]).split('-')[0]]) + ' ' + str(nodes[str(link[1]).split('-')[1]]) + ' ' + str(round(float(link[0]*100/float(x+1)), 3)) + '%'
+
+    #orig = str(nodes[str(link[1]).split('-')[0]])
+    #dest = str(nodes[str(link[1]).split('-')[1]])
+    #if (orig != "0") and (dest != "0"):
+        #print str(nodes[str(link[1]).split('-')[0]])
+        #print str(nodes[str(link[1]).split('-')[1]])
+        #v = str(round(float(link[0]*100/float(x+1)), 3))
+        #print v.split('.')[0] + ',' + v.split('.')[1] + '%'
