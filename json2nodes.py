@@ -1,7 +1,7 @@
 # Python Json parser for Node Failure Analysis by Eloy Gil & Hao Wu
 # {eloy,hao.wu}@ac.upc.edu
 # MIRI - DS - FIB (UPC)
-# Note: Requires simplejason -> pip install simplejson
+# Note: Requires simplejson -> pip install simplejson
 
 from collections import Counter
 import simplejson as json
